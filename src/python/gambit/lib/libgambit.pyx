@@ -37,30 +37,30 @@ cdef extern from "libgambit/game.h":
     cdef cppclass c_GameOutcomeRep "GameOutcomeRep"
     cdef cppclass c_GameNodeRep "GameNodeRep"
     
-    cdef cppclass c_Game "Game":
+    cdef cppclass c_Game "GameObjectPtr<GameRep>":
         c_GameRep *deref "operator->"() except +RuntimeError
 
-    cdef cppclass c_GamePlayer "GamePlayer":
+    cdef cppclass c_GamePlayer "GameObjectPtr<GamePlayerRep>":
         bool operator!=(c_GamePlayer)
         c_GamePlayerRep *deref "operator->"() except +RuntimeError
 
-    cdef cppclass c_GameOutcome "GameOutcome":
+    cdef cppclass c_GameOutcome "GameObjectPtr<GameOutcomeRep>":
         bool operator!=(c_GameOutcome)
         c_GameOutcomeRep *deref "operator->"() except +RuntimeError
  
-    cdef cppclass c_GameNode "GameNode":
+    cdef cppclass c_GameNode "GameObjectPtr<GameNodeRep>":
         bool operator!=(c_GameNode)
         c_GameNodeRep *deref "operator->"() except +RuntimeError
 
-    cdef cppclass c_GameAction "GameAction":
+    cdef cppclass c_GameAction "GameObjectPtr<GameActionRep>":
         bool operator!=(c_GameAction)
         c_GameActionRep *deref "operator->"() except +RuntimeError
 
-    cdef cppclass c_GameInfoset "GameInfoset":
+    cdef cppclass c_GameInfoset "GameObjectPtr<GameInfosetRep>":
         bool operator!=(c_GameInfoset) 
         c_GameInfosetRep *deref "operator->"() except +RuntimeError
 
-    cdef cppclass c_GameStrategy "GameStrategy":
+    cdef cppclass c_GameStrategy "GameObjectPtr<GameStrategyRep>":
         c_GameStrategyRep *deref "operator->"() except +RuntimeError
 
     cdef cppclass c_PureStrategyProfile "std::auto_ptr<PureStrategyProfileRep>":
