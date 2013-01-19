@@ -301,6 +301,17 @@ const T &MixedBehavProfile<T>::GetRealizProb(const GameNode &node) const
 }
 
 template <class T>
+T MixedBehavProfile<T>::GetRealizProb(const GameInfoset &iset) const
+{ 
+  ComputeSolutionData();
+  T prob = (T) 0;
+  for (int i = 1; i <= iset->NumMembers(); i++) {
+    prob += m_realizProbs[iset->GetMember(i)->GetNumber()];
+  }
+  return prob;
+}
+
+template <class T>
 const T &MixedBehavProfile<T>::GetBeliefProb(const GameNode &node) const
 { 
   ComputeSolutionData();
@@ -312,17 +323,6 @@ Vector<T> MixedBehavProfile<T>::GetNodeValue(const GameNode &node) const
 { 
   ComputeSolutionData();
   return m_nodeValues.Row(node->GetNumber());
-}
-
-template <class T>
-T MixedBehavProfile<T>::GetInfosetProb(const GameInfoset &iset) const
-{ 
-  ComputeSolutionData();
-  T prob = (T) 0;
-  for (int i = 1; i <= iset->NumMembers(); i++) {
-    prob += m_realizProbs[iset->GetMember(i)->GetNumber()];
-  }
-  return prob;
 }
 
 template <class T>
@@ -433,7 +433,7 @@ T MixedBehavProfile<T>::DiffActionValue(const GameAction &p_action,
       DiffNodeValue(member->GetChild(p_action->GetNumber()), player, p_oppAction);
   }
 
-  return deriv / GetInfosetProb(p_action->GetInfoset());
+  return deriv / GetRealizProb(p_action->GetInfoset());
 }
 
 template <class T>
@@ -602,7 +602,7 @@ void MixedBehavProfile<T>::ComputeSolutionData(void) const
 	  m_gripe(action->GetInfoset()->GetPlayer()->GetNumber(),
 		  action->GetInfoset()->GetNumber(),
                   action->GetNumber()) = 
-	    (ActionValue(action) - GetInfosetValue(infoset)) * GetInfosetProb(infoset);
+	    (ActionValue(action) - GetInfosetValue(infoset)) * GetRealizProb(infoset);
 	}
       }
     }

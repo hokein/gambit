@@ -957,7 +957,7 @@ API documentation
       on having reached the information set, if all
       other players play according to the profile.
 
-   .. py:method:: infoset_prob(infoset)
+   .. py:method:: realiz_prob(infoset)
 
       Returns the probability with which information set ``infoset``
       is reached, if all players play according to the profile.

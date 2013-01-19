@@ -144,7 +144,7 @@ cdef class MixedBehavProfile(object):
         raise TypeError("profile payoffs index must be int, str, or Player, not %s" %
                         player.__class__.__name__)
 
-    def infoset_prob(self, infoset):
+    def realiz_prob(self, infoset):
         if isinstance(infoset, str):
             infoset = self._resolve_index(infoset, players=False)
             if not isinstance(infoset, Infoset):
@@ -152,7 +152,7 @@ cdef class MixedBehavProfile(object):
         elif not isinstance(infoset, Infoset):
             raise TypeError("profile infoset probability index must be str or Infoset, not %s" %
                             infoset.__class__.__name__)
-        return self._infoset_prob(infoset)
+        return self._realiz_prob(infoset)
 
     def infoset_value(self, infoset):
         if isinstance(infoset, str):
@@ -214,8 +214,8 @@ cdef class MixedBehavProfileDouble(MixedBehavProfile):
         setaction_MixedBehavProfileDouble(self.profile, index.action, value)
     def _payoff(self, Player player):
         return self.profile.GetPayoff(player.player.deref().GetNumber())
-    def _infoset_prob(self, Infoset infoset):
-        return self.profile.GetInfosetProb(infoset.infoset)
+    def _realiz_prob(self, Infoset infoset):
+        return self.profile.GetRealizProb(infoset.infoset)
     def _infoset_value(self, Infoset infoset):
         return self.profile.GetInfosetValue(infoset.infoset)
     def _action_prob(self, Action action):
@@ -278,8 +278,8 @@ cdef class MixedBehavProfileRational(MixedBehavProfile):
         setaction_MixedBehavProfileRational(self.profile, index.action, s)
     def _payoff(self, Player player):
         return fractions.Fraction(rat_str(self.profile.GetPayoff(player.player.deref().GetNumber())).c_str())
-    def _infoset_prob(self, Infoset infoset):
-        return fractions.Fraction(rat_str(self.profile.GetInfosetProb(infoset.infoset)).c_str())
+    def _realiz_prob(self, Infoset infoset):
+        return fractions.Fraction(rat_str(self.profile.GetRealizProb(infoset.infoset)).c_str())
     def _infoset_value(self, Infoset infoset):
         return fractions.Fraction(rat_str(self.profile.GetInfosetValue(infoset.infoset)).c_str())
     def _action_prob(self, Action action):

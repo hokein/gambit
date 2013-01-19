@@ -258,21 +258,21 @@ class TestGambitMixedBehavGame(object):
 
     def test_infoset_prob(self):
         "Test to retrieve the probability associated to an infoset"
-        assert self.profile_double.infoset_prob(self.game.players[0].infosets[0]) == 1.0
-        assert self.profile_double.infoset_prob(self.game.players[1].infosets[0]) == 1.0
-        assert self.profile_double.infoset_prob(self.game.players[2].infosets[0]) == 1.0
-        assert self.profile_rational.infoset_prob(self.game.players[0].infosets[0]) == fractions.Fraction("1/1")
-        assert self.profile_rational.infoset_prob(self.game.players[1].infosets[0]) == fractions.Fraction("1/1")
-        assert self.profile_rational.infoset_prob(self.game.players[2].infosets[0]) == fractions.Fraction("1/1")
+        assert self.profile_double.realiz_prob(self.game.players[0].infosets[0]) == 1.0
+        assert self.profile_double.realiz_prob(self.game.players[1].infosets[0]) == 1.0
+        assert self.profile_double.realiz_prob(self.game.players[2].infosets[0]) == 1.0
+        assert self.profile_rational.realiz_prob(self.game.players[0].infosets[0]) == fractions.Fraction("1/1")
+        assert self.profile_rational.realiz_prob(self.game.players[1].infosets[0]) == fractions.Fraction("1/1")
+        assert self.profile_rational.realiz_prob(self.game.players[2].infosets[0]) == fractions.Fraction("1/1")
 
     def test_infoset_prob_by_string(self):
         "Test to retrieve the probability associated to an infoset by string values"
-        assert self.profile_double.infoset_prob("Infoset 1:1") == 1.0
-        assert self.profile_double.infoset_prob("Infoset 2:1") == 1.0
-        assert self.profile_double.infoset_prob("Infoset 3:1") == 1.0
-        assert self.profile_rational.infoset_prob("Infoset 1:1") == fractions.Fraction("1/1")
-        assert self.profile_rational.infoset_prob("Infoset 2:1") == fractions.Fraction("1/1")
-        assert self.profile_rational.infoset_prob("Infoset 3:1") == fractions.Fraction("1/1")
+        assert self.profile_double.realiz_prob("Infoset 1:1") == 1.0
+        assert self.profile_double.realiz_prob("Infoset 2:1") == 1.0
+        assert self.profile_double.realiz_prob("Infoset 3:1") == 1.0
+        assert self.profile_rational.realiz_prob("Infoset 1:1") == fractions.Fraction("1/1")
+        assert self.profile_rational.realiz_prob("Infoset 2:1") == fractions.Fraction("1/1")
+        assert self.profile_rational.realiz_prob("Infoset 3:1") == fractions.Fraction("1/1")
 
     def test_infoset_value(self):
         "Test to retrieve expected payoff associated to an infoset"
