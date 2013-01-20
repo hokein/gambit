@@ -158,3 +158,33 @@ can either (a) simply not install wxWidgets, or (b) pass the argument
 
 This will just build the command-line tools, and will not require
 a wxWidgets installation.
+
+Gambit repository Information
+-----------------------------
+Gambit project now hosts on github, `here <https://github.com/gambitproject/gambit>`_ is project page.
+
+You can grab the lastest source code
+(use git clone command) from following url::
+
+  https://github.com/gambitproject/gambit.git
+
+Gambit project follows the style of workflow described in gitworkflows manpage::
+
+  http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html
+
+There are two main branch on gambit repository:
+
+  1. master branch
+      This branch is the main dev-branch, you can regard it as upstream branch.
+  2. maint branch
+      This branch tracks the commits that should go into the next release. But
+      at the moment, maint isn't really actively used insofar as a full new relase
+      is planned "soon."
+
+You can submit issue or report bugs through opening an issue on gambit
+project github repository::
+
+  1. Go to issue page:
+       https://github.com/gambitproject/gambit/issues?state=open
+  2. Click new issue button to create an issue.
+  3. Described the details of the issue and then click "Submit new issue" button.
