@@ -160,10 +160,11 @@ void PrintHelp(char *progname)
   PrintBanner(std::cerr);
   std::cerr << "Usage: " << progname << " [OPTIONS] [file]\n";
   std::cerr << "If file is not specified, attempts to read game from standard input.\n";
-  std::cerr << "With no options, locates all Nash equilibria in pure strategies.\n\n";
+  std::cerr << "With no options, locates all Nash equilibria(use the strategic form) in pure strategies.\n\n";
 
   std::cerr << "Options:\n";
   std::cerr << "  -S               use strategic game\n";
+  std::cerr << "  -A               compute the agent version\n";
   std::cerr << "  -P               find only subgame-perfect equilibria\n";
   std::cerr << "  -h, --help       print this help message\n";
   std::cerr << "  -q               quiet mode (suppresses banner)\n";
@@ -175,7 +176,7 @@ void PrintHelp(char *progname)
 int main(int argc, char *argv[])
 {
   opterr = 0;
-  bool quiet = false, useStrategic = false, bySubgames = false;
+  bool quiet = false, useStrategic = true, bySubgames = false;
 
   int long_opt_index = 0;
   struct option long_options[] = {
@@ -184,12 +185,15 @@ int main(int argc, char *argv[])
     { 0,    0,    0,    0   }
   };
   int c;
-  while ((c = getopt_long(argc, argv, "vhqSP", long_options, &long_opt_index)) != -1) {
+  while ((c = getopt_long(argc, argv, "vhqSAP", long_options, &long_opt_index)) != -1) {
     switch (c) {
     case 'v':
       PrintBanner(std::cerr); exit(1);
     case 'S':
       useStrategic = true;
+      break;
+    case 'A':
+      useStrategic = false;
       break;
     case 'P':
       bySubgames = true;
